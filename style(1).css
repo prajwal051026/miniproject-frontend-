@@ -1,0 +1,596 @@
+/* ==========================================================
+   Mini Canteen Billing System - style.css
+   Warm canteen colours, rounded cards, responsive layout
+   ========================================================== */
+
+/* ---------- Colours (change them here in one place) ---------- */
+:root {
+  --cream: #fbf3e4;        /* page background */
+  --card: #fffdf8;         /* card background */
+  --brown: #4a2c17;        /* headings */
+  --green: #2f6b4f;        /* secondary headings / accents */
+  --orange: #f08a24;       /* main accent */
+  --orange-dark: #c96d12;
+  --yellow: #f6c343;       /* highlight accent */
+  --text: #3a2a1f;
+  --muted: #7a6656;
+  --line: #ead9bd;
+  --red: #b3372b;
+  --shadow: 0 4px 14px rgba(74, 44, 23, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--brown);
+  margin: 0;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 28px 16px;
+  background: var(--yellow);
+  border-bottom: 6px solid var(--orange);
+  text-align: left;
+}
+
+.header-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: var(--card);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.site-header h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.panel {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.panel h2 {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+
+/* ---------- Workflow steps (from the PPT) ---------- */
+.steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 6px 14px 6px 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brown);
+  box-shadow: var(--shadow);
+}
+
+.steps li::before {
+  content: counter(step);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.steps li:nth-child(even)::before {
+  background: var(--orange);
+}
+
+/* ---------- Menu cards ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.food-card {
+  position: relative;
+  text-align: center;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 16px 18px;
+  box-shadow: var(--shadow);
+}
+
+.choice-badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.food-emoji {
+  font-size: 3.4rem;
+  line-height: 1.2;
+}
+
+.food-card h3 {
+  font-size: 1.4rem;
+  margin-top: 4px;
+}
+
+.food-price {
+  margin: 4px 0 14px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--orange-dark);
+}
+
+/* ---------- Quantity control ---------- */
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.qty-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--brown);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: var(--orange);
+  color: #fff;
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qty-input {
+  width: 64px;
+  height: 38px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brown);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.qty-input.invalid {
+  border-color: var(--red);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 11px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--orange-dark);
+}
+
+.btn-secondary {
+  background: var(--green);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #245640;
+}
+
+.btn-danger {
+  background: #fff;
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.btn-danger:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+.add-btn {
+  width: 100%;
+}
+
+/* Keyboard focus is clearly visible */
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* ---------- Order list ---------- */
+.formula {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 6px 14px;
+  background: #fff4d6;
+  border-radius: 10px;
+  color: var(--brown);
+  font-weight: 600;
+}
+
+.empty-note {
+  margin: 8px 0 16px;
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+}
+
+.order-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.order-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.order-name {
+  flex: 1 1 160px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-emoji {
+  font-size: 1.8rem;
+}
+
+.order-name strong {
+  display: block;
+  color: var(--brown);
+}
+
+.order-price {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.order-row .qty-control {
+  margin-bottom: 0;
+  gap: 6px;
+}
+
+.order-row .qty-btn {
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+}
+
+.qty-value {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.order-total {
+  min-width: 70px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--green);
+  font-size: 1.1rem;
+}
+
+.remove-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #f8e1de;
+  color: var(--red);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+.grand-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0;
+  padding: 14px 18px;
+  background: var(--green);
+  color: #fff;
+  border-radius: 14px;
+  font-size: 1.1rem;
+}
+
+.grand-total strong {
+  font-size: 1.7rem;
+  color: var(--yellow);
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- Bill summary (receipt) ---------- */
+.bill-section {
+  margin-bottom: 22px;
+}
+
+.receipt {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 26px 24px;
+  background: #fff;
+  border: 2px dashed var(--brown);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-family: "Courier New", Consolas, monospace;
+  color: #2b1d12;
+}
+
+.receipt h2 {
+  text-align: center;
+  font-family: "Courier New", Consolas, monospace;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+}
+
+.bill-date {
+  margin: 4px 0 14px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.bill-head,
+.bill-line,
+.bill-total-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.8fr;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.bill-head {
+  font-weight: 700;
+  border-top: 1px dashed var(--brown);
+  border-bottom: 1px dashed var(--brown);
+}
+
+.bill-head span:last-child,
+.bill-line span:last-child {
+  text-align: right;
+}
+
+.bill-total-row {
+  grid-template-columns: 1fr auto;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--brown);
+  font-size: 1.2rem;
+}
+
+.bill-total-row strong {
+  font-size: 1.5rem;
+  color: var(--orange-dark);
+}
+
+.bill-java-line {
+  margin: 10px 0 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.bill-thanks {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 22px 16px;
+  text-align: center;
+  background: var(--brown);
+  color: #f4e6cf;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-small {
+  margin-top: 4px !important;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ---------- Message box ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 460px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.toast.success {
+  background: var(--green);
+}
+
+.toast.error {
+  background: var(--red);
+}
+
+/* ---------- Tablet and mobile ---------- */
+@media (max-width: 800px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .food-card {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 22px 12px;
+  }
+
+  .site-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .action-row .btn {
+    flex: 1 1 100%;
+  }
+
+  .order-total {
+    margin-left: auto;
+  }
+
+  .receipt {
+    padding: 20px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---------- Print: show only the bill ---------- */
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .receipt {
+    box-shadow: none;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Canteen Billing System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== A. HEADER ===== -->
+  <header class="site-header no-print">
+    <div class="header-icon" aria-hidden="true">🍽️</div>
+    <div>
+      <h1>Mini Canteen Billing System</h1>
+      <p class="subtitle">Quick Ordering, Easy Billing</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Workflow from the PPT: the same 5 steps as the Java program -->
+    <ol class="steps no-print" aria-label="How the system works">
+      <li>Display menu</li>
+      <li>Select item</li>
+      <li>Enter quantity</li>
+      <li>Calculate bill</li>
+      <li>Show total</li>
+    </ol>
+
+    <!-- ===== B. FOOD MENU ===== -->
+    <section class="panel no-print" aria-labelledby="menuTitle">
+      <h2 id="menuTitle">Today's Menu</h2>
+
+      <div class="menu-grid" id="menuGrid">
+
+        <!-- Item 1: Tea -->
+        <article class="food-card" data-choice="1">
+          <span class="choice-badge">Choice 1</span>
+          <div class="food-emoji" aria-hidden="true">☕</div>
+          <h3>Tea</h3>
+          <p class="food-price">₹10</p>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-action="card-minus" aria-label="Decrease quantity of Tea">−</button>
+            <input type="number" class="qty-input" id="qty-1" value="1" min="1" max="99" step="1" inputmode="numeric" aria-label="Quantity of Tea">
+            <button type="button" class="qty-btn" data-action="card-plus" aria-label="Increase quantity of Tea">+</button>
+          </div>
+          <button type="button" class="btn btn-primary add-btn" data-action="add">Add to Bill</button>
+        </article>
+
+        <!-- Item 2: Dosa -->
+        <article class="food-card" data-choice="2">
+          <span class="choice-badge">Choice 2</span>
+          <div class="food-emoji" aria-hidden="true">🥞</div>
+          <h3>Dosa</h3>
+          <p class="food-price">₹30</p>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-action="card-minus" aria-label="Decrease quantity of Dosa">−</button>
+            <input type="number" class="qty-input" id="qty-2" value="1" min="1" max="99" step="1" inputmode="numeric" aria-label="Quantity of Dosa">
+            <button type="button" class="qty-btn" data-action="card-plus" aria-label="Increase quantity of Dosa">+</button>
+          </div>
+          <button type="button" class="btn btn-primary add-btn" data-action="add">Add to Bill</button>
+        </article>
+
+        <!-- Item 3: Juice -->
+        <article class="food-card" data-choice="3">
+          <span class="choice-badge">Choice 3</span>
+          <div class="food-emoji" aria-hidden="true">🥤</div>
+          <h3>Juice</h3>
+          <p class="food-price">₹20</p>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-action="card-minus" aria-label="Decrease quantity of Juice">−</button>
+            <input type="number" class="qty-input" id="qty-3" value="1" min="1" max="99" step="1" inputmode="numeric" aria-label="Quantity of Juice">
+            <button type="button" class="qty-btn" data-action="card-plus" aria-label="Increase quantity of Juice">+</button>
+          </div>
+          <button type="button" class="btn btn-primary add-btn" data-action="add">Add to Bill</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== C. BILLING AREA ===== -->
+    <section class="panel no-print" aria-labelledby="orderTitle">
+      <h2 id="orderTitle">Current Order</h2>
+      <p class="formula">Total Bill = Item Price × Quantity</p>
+
+      <p class="empty-note" id="emptyNote">No items added yet. Choose a food item above and press “Add to Bill”.</p>
+      <ul class="order-list" id="orderList"></ul>
+
+      <div class="grand-total">
+        <span>Grand Total</span>
+        <strong id="grandTotal">₹0</strong>
+      </div>
+
+      <!-- ===== D. BILL GENERATION BUTTONS ===== -->
+      <div class="action-row">
+        <button type="button" class="btn btn-primary" id="generateBtn">Generate Bill</button>
+        <button type="button" class="btn btn-secondary" id="printBtn">Print Bill</button>
+        <button type="button" class="btn btn-danger" id="clearBtn">Clear Bill</button>
+      </div>
+    </section>
+
+    <!-- ===== D. BILL SUMMARY (shown after Generate Bill) ===== -->
+    <section class="bill-section" id="billSection" aria-labelledby="billTitle" hidden>
+      <div class="receipt">
+        <h2 id="billTitle">CANTEEN BILL</h2>
+        <p class="bill-date" id="billDate"></p>
+        <div class="bill-head">
+          <span>Item</span>
+          <span>Price × Qty</span>
+          <span>Amount</span>
+        </div>
+        <div id="billBody"></div>
+        <div class="bill-total-row">
+          <span>Final Amount</span>
+          <strong id="billTotal">₹0</strong>
+        </div>
+        <p class="bill-java-line" id="billJavaLine"></p>
+        <p class="bill-thanks">Thank you! Visit again.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer no-print">
+    <p>Java Mini Project • Mini Canteen Billing System</p>
+    <p class="footer-small">This web page is a JavaScript frontend that follows the same menu and billing logic as the Java program in the project presentation.</p>
+  </footer>
+
+  <!-- Small message box used for errors and confirmations -->
+  <div class="toast no-print" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
